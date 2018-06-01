@@ -1,5 +1,11 @@
 {
-	"devDependencies": {
-		"lerna": "^2.11.0"
-	}
+  "devDependencies": {
+    "lerna": "^2.11.0"
+  },
+  "scripts": {
+    "build:dependency": "lerna run build:dependency",
+    "build": "lerna run build:dependency && lerna run build",
+    "bootstrap": "lerna bootstrap",
+    "test": "lerna run test"
+  }
 }

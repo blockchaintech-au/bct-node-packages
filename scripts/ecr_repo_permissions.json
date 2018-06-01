@@ -1,0 +1,23 @@
+{
+"Version": "2008-10-17",
+  "Statement": [
+    {
+      "Sid": "local_account",
+      "Effect": "Allow",
+      "Principal": { "AWS": [ "106251776774" ] },
+      "Action": "ecr:*"
+    },
+    {
+      "Sid": "repo_permissions",
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": [ "821127731612" ]
+      },
+      "Action": [
+        "ecr:GetDownloadUrlForLayer",
+        "ecr:BatchCheckLayerAvailability",
+        "ecr:BatchGetImage"
+      ]
+    }
+  ]
+}
