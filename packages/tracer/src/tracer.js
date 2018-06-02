@@ -1,21 +1,9 @@
 import winston from 'winston';
+import format from './format';
 
-const { combine, timestamp, label, printf } = winston.format;
+const { NODE_ENV, LOGGER_LEVEL } = process.env;
 
-const {
-  PROJECT_NAME,
-  APPLICATION_NAME,
-  NODE_ENV,
-  LOGGER_LEVEL,
-} = process.env;
-
-
-const myFormat = printf(info => {
-  return `${info.timestamp} [${info.label}] ${info.level}: ${info.message}`;
-});
-
-
-const logger = winston.createLogger({
+const tracer = winston.createLogger({
   levels: winston.config.syslog.levels,
   exitOnError: false,
   transports: [
@@ -24,14 +12,7 @@ const logger = winston.createLogger({
       level: LOGGER_LEVEL || 'debug',
     }),
   ],
-  format: combine(
-    label({ label: 'right meow!' }),
-    timestamp(),
-    myFormat,
-  ),
+  format: format(),
 });
 
-logger.debug('debug');
-logger.info('info');
-logger.warning('warning');
-logger.error('error');
+export default tracer;
