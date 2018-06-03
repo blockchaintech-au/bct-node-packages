@@ -1,7 +1,7 @@
 {
   "name": "bff",
   "version": "1.0.0",
-  "description": "Log system for Blockchaintech",
+  "description": "HTTP client for Blockchaintech",
   "main": "dist/index.js",
   "author": "blockchain tech",
   "license": "ISC",
@@ -19,7 +19,8 @@
     "eslint": "eslint test src"
   },
   "dependencies": {
-
+    "@blockchaintech/tracer": "^1.0.0",
+    "axios": "^0.18.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
@@ -29,6 +30,7 @@
     "eslint": "^4.15.0",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-plugin-import": "^2.8.0",
-    "jest": "^23.0.1"
+    "jest": "^23.0.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0"
   }
 }

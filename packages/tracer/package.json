@@ -1,5 +1,5 @@
 {
-  "name": "bff",
+  "name": "@blockchaintech/tracer",
   "version": "1.0.0",
   "description": "Logging system for Blockchaintech",
   "main": "dist/tracer.js",
