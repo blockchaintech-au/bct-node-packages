@@ -1,12 +1,16 @@
-import tracer from '../src/tracer';
 import format from '../src/format';
 
-process.env['NODE_ENV'] = 'production';
-process.env['PROJECT_NAME'] = 'BCT';
-process.env['APPLICATION_NAME'] = 'Tracer';
-process.env['LOGGER_LEVEL'] = 'debug';
+const MESSAGE = Symbol.for('message');
 
-tracer.debug('debug', {shu: 'hui'});
-tracer.info('info', {project: 'csf'});
-tracer.warning('warning');
-tracer.error('error');
+describe('Log format', () => {
+  test('should return json format log', () => {
+    const formatter = format();
+    const log = formatter.transform({
+      level: 'info',
+      message: 'information',
+    }, formatter.options);
+    const infoLog = JSON.parse(log[MESSAGE]);
+    expect(infoLog.level).toEqual('info');
+    expect(infoLog.message).toEqual('information');
+  });
+});

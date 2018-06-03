@@ -1,8 +1,8 @@
 {
   "name": "bff",
   "version": "1.0.0",
-  "description": "Log system for Blockchaintech",
-  "main": "dist/index.js",
+  "description": "Logging system for Blockchaintech",
+  "main": "dist/tracer.js",
   "author": "blockchain tech",
   "license": "ISC",
   "repository": {
@@ -31,7 +31,6 @@
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-plugin-import": "^2.8.0",
     "jest": "^23.0.1",
-    "triple-beam": "^1.3.0",
     "babel-plugin-transform-object-rest-spread": "^6.26.0"
   }
 }

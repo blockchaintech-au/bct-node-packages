@@ -1,7 +1,6 @@
 import winston from 'winston';
 
 const MESSAGE = Symbol.for('message');
-const LEVEL = Symbol.for('level');
 
 const {
   PROJECT_NAME,
@@ -12,28 +11,29 @@ const {
 const extraLogGroup = ['staging', 'production'];
 
 const format = winston.format((info) => {
-  const { level, message, LEVEL, ...obj } = info;
-  let formattedInfo = {
+  const { level, message, ...obj } = info;
+  let messageObj = {
     level,
     timestamp: (new Date()).toISOString(),
   };
   if (extraLogGroup.includes(NODE_ENV)) {
-    formattedInfo = {
-      ...formattedInfo,
+    messageObj = {
+      ...messageObj,
       project: PROJECT_NAME,
       applicationName: APPLICATION_NAME,
       environment: NODE_ENV,
     };
   }
 
-  formattedInfo = {
-    ...formattedInfo,
+  messageObj = {
+    ...messageObj,
     message,
-    ...obj
+    ...obj,
   };
 
-  info[MESSAGE] = JSON.stringify(formattedInfo);
-  return info;
+  const formattedInfo = { ...info };
+  formattedInfo[MESSAGE] = JSON.stringify(messageObj);
+  return formattedInfo;
 });
 
 export default format;
