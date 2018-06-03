@@ -1,6 +1,6 @@
 {
   "name": "@blockchaintech/tracer",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Logging system for Blockchaintech",
   "main": "dist/tracer.js",
   "author": "blockchain tech",
@@ -11,7 +11,6 @@
   },
   "scripts": {
     "build:dependency": "npm i babel-cli babel-core babel-preset-env",
-    "start": "babel-node src/server.js",
     "test": "npm run eslint && npm run test:jest",
     "test:jest": "jest",
     "clean": "rm -rf dist && mkdir dist",
@@ -26,7 +25,6 @@
     "babel-core": "^6.26.3",
     "babel-jest": "^23.0.1",
     "babel-preset-env": "^1.7.0",
-    "dotenv": "^5.0.1",
     "eslint": "^4.15.0",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-plugin-import": "^2.8.0",

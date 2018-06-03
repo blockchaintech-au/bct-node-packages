@@ -1,38 +1,29 @@
 import axios from 'axios';
+import tracer from '@blockchaintech/tracer';
+import { requestLogFormatter, responseLogFormatter, errorLogFormatter } from './log-formatter';
 
+const symmetra = axios.create({
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  responseType: 'json',
+});
 
+symmetra.interceptors.request.use((req) => {
+  tracer.info('Sent HTTP Request:', requestLogFormatter(req));
+  return req;
+});
 
-const defaultRequestOptions = {
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    responseType: 'json',
-  };
-  
-  const NotFound = message => {
-    const error = new Error(message);
-    error.code = 'NotFound';
-    return error;
-  };
-  
-  const formatResponse = ({ response }) => {
-    console.log(response);
-    const res = pickAll(['status', 'headers', 'data'], response);
-    const requestUrl = path(['config', 'url'], response);
-    return { requestUrl, ...res };
-  };
-  
-  axios.interceptors.request.use(request => {
-    logger.info('BFF sent Request:', request);
-    return request;
-  });
-  
-  axios.interceptors.response.use(response => {
-    logger.info('BFF got Response:', formatResponse({ response }));
-    return response;
-  }, error => {
-    logger.error('BFF got Error:', formatResponse(error));
-    return Promise.reject(error);
-  });
+symmetra.interceptors.response.use((res) => {
+  tracer.info('Receive HTTP Response:', responseLogFormatter(res));
+  return res;
+}, (err) => {
+  if (err.response.status === 500) {
+    tracer.error('Receive HTTP Error Response:', errorLogFormatter(err));
+  } else {
+    tracer.warning('Receive HTTP Error Response:', errorLogFormatter(err));
+  }
+  return Promise.reject(err);
+});
 
-axios.get('http://localhost:8080').then(res => console.log(res)).catch(error => console.log(error));
+export default symmetra;
