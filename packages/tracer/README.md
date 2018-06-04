@@ -1,6 +1,7 @@
 ## The logging system for Blockchaintech
 
-###Log Level  
+### Log Level  
+
 ```js 
 {
   emerg: 0,
