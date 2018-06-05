@@ -19,11 +19,10 @@ symmetra.interceptors.response.use((res) => {
   tracer.info('Receive HTTP Response:', responseLogFormatter(res));
   return res;
 }, (err) => {
-  console.log();
-  if (err.response.status === 500) {
-    tracer.error('Receive HTTP Error Response:', errorLogFormatter(err));
-  } else {
+  if (err.response && err.response.status !== 500) {
     tracer.warning('Receive HTTP Error Response:', errorLogFormatter(err));
+  } else {
+    tracer.error('Receive HTTP Error Response:', errorLogFormatter(err));
   }
   return Promise.reject(new HttpError(err));
 });
