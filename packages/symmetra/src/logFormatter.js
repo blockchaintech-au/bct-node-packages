@@ -37,6 +37,7 @@ function errorLogFormatter(error) {
   const { status, data } = error.response;
   return {
     error: {
+      message: error.message,
       status,
       data,
     },
