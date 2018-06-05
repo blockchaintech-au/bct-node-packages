@@ -1,6 +1,6 @@
 {
   "name": "@blockchaintech/tracer",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "Logging system for Blockchaintech",
   "main": "dist/tracer.js",
   "author": "blockchain tech",
@@ -18,7 +18,9 @@
     "eslint": "eslint test src"
   },
   "dependencies": {
-    "winston": "^3.0.0-rc6"
+    "@slack/client": "^4.2.2",
+    "winston": "^3.0.0-rc6",
+    "winston-transport": "^4.1.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

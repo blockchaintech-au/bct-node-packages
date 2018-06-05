@@ -1,6 +1,6 @@
 {
   "name": "@blockchaintech/symmetra",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "HTTP client for Blockchaintech",
   "main": "dist/symmetra.js",
   "author": "blockchain tech",
@@ -17,7 +17,7 @@
     "eslint": "eslint test src"
   },
   "dependencies": {
-    "@blockchaintech/tracer": "^1.0.1",
+    "@blockchaintech/tracer": "^1.0.3",
     "axios": "^0.18.0"
   },
   "devDependencies": {
