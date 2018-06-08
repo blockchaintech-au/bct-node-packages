@@ -1,6 +1,8 @@
 import { WebClient } from '@slack/client';
 import Transport from 'winston-transport';
 
+const MESSAGE = Symbol.for('message');
+
 const token = process.env.SLACK_TOKEN;
 const conversationId = process.env.CONVERSATION_ID;
 
@@ -23,7 +25,7 @@ class SlackTransport extends Transport {
   }
 
   log(info, callback) {
-    this.slack.sendMessage(info)
+    this.slack.sendMessage(info[MESSAGE])
       .then()
       .catch(err => console.error(err));
     callback();

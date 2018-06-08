@@ -17,7 +17,8 @@ symmetra.interceptors.request.use((req) => {
 
 symmetra.interceptors.response.use((res) => {
   tracer.info('Receive HTTP Response:', responseLogFormatter(res));
-  return res;
+  if (res.config.full) return res;
+  return res.data;
 }, (err) => {
   if (err.response && err.response.status !== 500) {
     tracer.warning('Receive HTTP Error Response:', errorLogFormatter(err));
