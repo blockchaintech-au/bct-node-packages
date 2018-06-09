@@ -25,7 +25,8 @@ class SlackTransport extends Transport {
   }
 
   log(info, callback) {
-    this.slack.sendMessage(info[MESSAGE])
+    const msg = JSON.stringify(JSON.parse(info[MESSAGE]), null, 4);
+    this.slack.sendMessage(msg)
       .then()
       .catch(err => console.error(err));
     callback();
