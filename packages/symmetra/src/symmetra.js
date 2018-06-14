@@ -1,31 +1,15 @@
+
 import axios from 'axios';
-import tracer from '@blockchaintech/tracer';
-import { requestLogFormatter, responseLogFormatter, errorLogFormatter } from './logFormatter';
-import HttpError from './httpError';
+import applyInteceptor from './interceptor';
+import { defaultConfig, mergeConfig } from './helpers/configHelper';
 
-const symmetra = axios.create({
-  headers: {
-    'Content-Type': 'application/json',
-  },
-  responseType: 'json',
-});
+function createInstance(customConfig) {
+  const instance = axios.create(mergeConfig(defaultConfig, customConfig));
+  applyInteceptor(instance);
+  return instance;
+}
 
-symmetra.interceptors.request.use((req) => {
-  tracer.info('Sent HTTP Request:', requestLogFormatter(req));
-  return req;
-});
-
-symmetra.interceptors.response.use((res) => {
-  tracer.info('Receive HTTP Response:', responseLogFormatter(res));
-  if (res.config.full) return res;
-  return res.data;
-}, (err) => {
-  if (err.response && err.response.status !== 500) {
-    tracer.warning('Receive HTTP Error Response:', errorLogFormatter(err));
-  } else {
-    tracer.error('Receive HTTP Error Response:', errorLogFormatter(err));
-  }
-  return Promise.reject(new HttpError(err));
-});
+const symmetra = createInstance();
+symmetra.create = createInstance;
 
 export default symmetra;

@@ -1,6 +1,6 @@
 {
   "name": "@blockchaintech/symmetra",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "HTTP client for Blockchaintech",
   "main": "dist/symmetra.js",
   "author": "blockchain tech",
@@ -18,7 +18,8 @@
   },
   "dependencies": {
     "@blockchaintech/tracer": "^1.0.6",
-    "axios": "^0.18.0"
+    "axios": "^0.18.0",
+    "lodash": "^4.17.10"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
