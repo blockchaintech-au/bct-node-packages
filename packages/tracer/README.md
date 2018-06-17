@@ -1,6 +1,6 @@
-## The logging system for Blockchaintech
+# The logging system for Blockchaintech
 
-### Log Level  
+## Log Level  
 
 ```js 
 {
@@ -15,7 +15,7 @@
 }
 ```
 
-### How to use
+## How to use
 ```
 tracer.<log level>(message, {Object});
 ```
@@ -30,5 +30,14 @@ tracer.info('info message', { info: 'some information' });
 The log should be 
 
 ```js
-{"level":"info","timestamp":"2018-06-04T01:15:07.440Z","message":"info message","info":"some information"}
+{"level":"info","timestamp":"2018-06-17T03:12:52.518Z","project":"csf","applicationName":"tracer","environment":"production","message":"info message","info":"some information"}
+```
+
+## Slack Integration
+
+Set Slack API token and conversation id in the environment variable
+
+```sh
+export SLACK_TOKEN=XXXXXXX
+export CONVERSATION_ID=XXXXXX
 ```
