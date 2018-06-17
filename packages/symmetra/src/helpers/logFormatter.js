@@ -1,6 +1,7 @@
 const redundantHeaders = ['common', 'delete', 'get', 'head', 'post', 'put', 'patch'];
 function requestLogFormatter(req) {
   const {
+    baseURL,
     url,
     method,
     params,
@@ -14,6 +15,7 @@ function requestLogFormatter(req) {
   });
   return {
     request: {
+      baseURL,
       url,
       method,
       headers,

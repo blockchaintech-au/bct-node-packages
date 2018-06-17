@@ -1,6 +1,6 @@
 {
   "name": "@blockchaintech/symmetra",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "HTTP client for Blockchaintech",
   "main": "dist/symmetra.js",
   "author": "blockchain tech",
@@ -11,7 +11,8 @@
   },
   "scripts": {
     "build:dependency": "npm i babel-cli babel-core babel-preset-env",
-    "test": "npm run eslint",
+    "test": "npm run eslint && npm run test:jest",
+    "test:jest": "jest",
     "clean": "rm -rf dist && mkdir dist",
     "build": "npm run clean && babel -d ./dist ./src",
     "eslint": "eslint test src"
@@ -25,10 +26,11 @@
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
     "babel-jest": "^23.0.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "eslint": "^4.15.0",
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-plugin-import": "^2.8.0",
-    "babel-plugin-transform-object-rest-spread": "^6.26.0"
+    "jest": "^23.1.0"
   }
 }
