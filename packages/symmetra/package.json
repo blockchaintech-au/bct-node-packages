@@ -1,6 +1,6 @@
 {
   "name": "@blockchaintech/symmetra",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "description": "HTTP client for Blockchaintech",
   "main": "dist/symmetra.js",
   "author": "blockchain tech",
