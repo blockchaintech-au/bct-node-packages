@@ -4,8 +4,9 @@ class HttpError extends Error {
     if (error.response) {
       this.status = error.response.status;
       this.data = error.response.data;
+    } else {
+      this.status = 500;
     }
-    this.status = 500;
   }
 }
 
