@@ -5,6 +5,7 @@ const defaultConfig = {
     'Content-Type': 'application/json',
   },
   responseType: 'json',
+  timeout: 20000,
 };
 
 function mergeConfig(config1, config2) {
