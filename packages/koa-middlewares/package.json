@@ -1,6 +1,6 @@
 {
   "name": "@blockchaintech/koa-middlewares",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Koa middlewares",
   "main": "dist/index.js",
   "author": "blockchain tech",
