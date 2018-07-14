@@ -66,3 +66,12 @@ try {
   console.log(error);
 }
 ```
+
+## error object
+```js
+{
+  message,
+  status,
+  data
+}
+```
