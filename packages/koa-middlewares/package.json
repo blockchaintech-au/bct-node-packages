@@ -1,13 +1,13 @@
 {
-  "name": "@blockchaintech/symmetra",
-  "version": "1.0.15",
-  "description": "HTTP client for Blockchaintech",
-  "main": "dist/symmetra.js",
+  "name": "@blockchaintech/koa-middlewares",
+  "version": "0.0.1",
+  "description": "Koa middlewares",
+  "main": "dist/index.js",
   "author": "blockchain tech",
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "https://github.com/blockchaintech-au/bct-node-packages/tree/master/packages/symmetra"
+    "url": "https://github.com/blockchaintech-au/kyc-ui"
   },
   "scripts": {
     "build:dependency": "npm i babel-cli babel-core babel-preset-env",
@@ -19,8 +19,7 @@
   },
   "dependencies": {
     "@blockchaintech/tracer": "^1.0.6",
-    "axios": "^0.18.0",
-    "lodash": "^4.17.10"
+    "jsonwebtoken": "^8.3.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

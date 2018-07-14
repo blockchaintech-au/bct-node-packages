@@ -7,7 +7,7 @@
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "https://github.com/blockchaintech-au/kyc-ui"
+    "url": "https://github.com/blockchaintech-au/bct-node-packages/tree/master/packages/tracer"
   },
   "scripts": {
     "build:dependency": "npm i babel-cli babel-core babel-preset-env",
