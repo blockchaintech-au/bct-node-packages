@@ -1,13 +1,13 @@
 {
   "name": "@blockchaintech/koa-middlewares",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Koa middlewares",
   "main": "dist/index.js",
   "author": "blockchain tech",
   "license": "ISC",
   "repository": {
     "type": "git",
-    "url": "https://github.com/blockchaintech-au/kyc-ui"
+    "url": "https://github.com/blockchaintech-au/bct-node-packages/tree/master/packages/koa-middlewares"
   },
   "scripts": {
     "build:dependency": "npm i babel-cli babel-core babel-preset-env",
