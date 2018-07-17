@@ -1,6 +1,6 @@
 {
   "name": "@blockchaintech/tracer",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "Logging system for Blockchaintech",
   "main": "dist/tracer.js",
   "author": "blockchain tech",
