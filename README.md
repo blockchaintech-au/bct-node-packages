@@ -6,7 +6,7 @@ node packages for Blockchaintech
 Add `.npmrc` in your workspace
 
 ```
-//registry.npmjs.org/:_authToken=ca2648f9-02a1-4bd8-bf70-1ef6f84f0464
+//registry.npmjs.org/:_authToken=4c9bceaf-c939-4a59-932b-714e814b981a
 scope=blockchaintech
 ```
 
