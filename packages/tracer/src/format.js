@@ -3,9 +3,9 @@ import winston from 'winston';
 const MESSAGE = Symbol.for('message');
 
 const {
-  PROJECT_NAME,
-  APPLICATION_NAME,
-  NODE_ENV,
+  PROJECT,
+  APP_NAME,
+  ENVIRONMENT,
 } = process.env;
 
 const extraLogGroup = ['staging', 'production'];
@@ -16,12 +16,12 @@ const format = winston.format((info) => {
     level,
     timestamp: (new Date()).toISOString(),
   };
-  if (extraLogGroup.includes(NODE_ENV)) {
+  if (extraLogGroup.includes(ENVIRONMENT)) {
     messageObj = {
       ...messageObj,
-      project: PROJECT_NAME,
-      applicationName: APPLICATION_NAME,
-      environment: NODE_ENV,
+      project: PROJECT,
+      application: APP_NAME,
+      environment: ENVIRONMENT,
     };
   }
 
