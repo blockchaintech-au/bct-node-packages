@@ -30,7 +30,7 @@ tracer.info('info message', { info: 'some information' });
 The log should be 
 
 ```js
-{"level":"info","timestamp":"2018-06-17T03:12:52.518Z","project":"csf","applicationName":"tracer","environment":"production","message":"info message","info":"some information"}
+{"level":"info","datetime":"2018-06-17T03:12:52.518Z","project":"csf","application":"tracer","environment":"production","message":"info message","info":"some information"}
 ```
 
 ## Slack Integration

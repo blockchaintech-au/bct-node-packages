@@ -14,7 +14,7 @@ const format = winston.format((info) => {
   const { level, message, ...obj } = info;
   let messageObj = {
     level,
-    timestamp: (new Date()).toISOString(),
+    datetime: (new Date()).toISOString(),
   };
   if (extraLogGroup.includes(ENVIRONMENT)) {
     messageObj = {
