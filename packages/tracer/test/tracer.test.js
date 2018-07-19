@@ -13,4 +13,35 @@ describe('Log format', () => {
     expect(infoLog.level).toEqual('info');
     expect(infoLog.message).toEqual('information');
   });
+
+  test('should return masked format log', () => {
+    const formatter = format();
+    const log = formatter.transform({
+      level: 'info',
+      message: {
+        password: 'password',
+        user: {
+          password: 'pass',
+        },
+        users: [{
+          password: '1',
+        }, {
+          password: '2',
+        }],
+      },
+    }, formatter.options);
+    const infoLog = JSON.parse(log[MESSAGE]);
+    expect(infoLog.level).toEqual('info');
+    expect(infoLog.message).toEqual({
+      password: '********',
+      user: {
+        password: '****',
+      },
+      users: [{
+        password: '*',
+      }, {
+        password: '*',
+      }],
+    });
+  });
 });
