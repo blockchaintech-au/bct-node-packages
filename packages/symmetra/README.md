@@ -67,6 +67,22 @@ try {
 }
 ```
 
+## Hide request and response params in log
+
+```js
+try {
+  const response = await symm.post('/user', {
+    firstName: 'Fred',
+    lastName: 'Flintstone'
+  }, {
+    logParams: false,
+  });
+  console.log(response);
+} catch (error) {
+  console.log(error);
+}
+```
+
 ## error object
 ```js
 {
