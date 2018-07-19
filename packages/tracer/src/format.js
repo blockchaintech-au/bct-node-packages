@@ -2,7 +2,7 @@ import winston from 'winston';
 import MaskHelper from './maskHelper';
 
 const filter = {
-  password: /.*/
+  password: /.*/,
 };
 
 
@@ -20,7 +20,6 @@ const extraLogGroup = ['staging', 'production'];
 
 const format = winston.format((info) => {
   const { level, message, ...obj } = info;
-  maskHelper.mask(message);
   let messageObj = {
     level,
     datetime: (new Date()).toISOString(),
@@ -33,11 +32,11 @@ const format = winston.format((info) => {
       environment: ENVIRONMENT,
     };
   }
-
+  const maskedObj = maskHelper.mask(obj);
   messageObj = {
     ...messageObj,
     message,
-    ...obj,
+    ...maskedObj,
   };
 
   const formattedInfo = { ...info };

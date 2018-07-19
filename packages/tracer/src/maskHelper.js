@@ -1,24 +1,29 @@
+function isArrayOrObject(obj) {
+  return Array.isArray(obj) || (typeof obj === 'object');
+}
+
 class MaskHelper {
-  constructor (filter){
+  constructor(filter) {
     this.filter = filter;
   }
 
-  mask(object){
-    this.maskObj(object);
+  mask(object) {
+    const cloneObj = JSON.parse(JSON.stringify(object));
+    this.maskObj(cloneObj);
+    return cloneObj;
   }
 
   maskObj(obj) {
-    if(Array.isArray(obj)){
-      obj.forEach( item => {
-        if(this.isArrayOrObject(item)) {
+    if (Array.isArray(obj)) {
+      obj.forEach((item) => {
+        if (isArrayOrObject(item)) {
           this.maskObj(item);
         }
-        return;
       });
-    } else if( typeof obj === 'object' ){
-      Object.keys(obj).forEach(key => {
-        const value = obj[key]
-        if(this.isArrayOrObject(value)) {
+    } else if (obj && typeof obj === 'object') {
+      Object.keys(obj).forEach((key) => {
+        const value = obj[key];
+        if (isArrayOrObject(value)) {
           this.maskObj(value);
         } else {
           obj[key] = this.maskItem(key, value);
@@ -28,18 +33,11 @@ class MaskHelper {
   }
 
   maskItem(key, value) {
-    if (this.filter.hasOwnProperty(key)) {
-      return String(value).replace(this.filter[key], x => {
-        return '*'.repeat(x.length);
-      })
+    if (Object.prototype.hasOwnProperty.call(this.filter, key)) {
+      return String(value).replace(this.filter[key], x => '*'.repeat(x.length));
     }
     return value;
   }
-
-  isArrayOrObject(obj){
-    return Array.isArray(obj) || (typeof obj === 'object');
-  }
 }
-
 
 export default MaskHelper;

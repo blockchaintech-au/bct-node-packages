@@ -18,7 +18,8 @@ describe('Log format', () => {
     const formatter = format();
     const log = formatter.transform({
       level: 'info',
-      message: {
+      message: 'information',
+      request: {
         password: 'password',
         user: {
           password: 'pass',
@@ -32,7 +33,7 @@ describe('Log format', () => {
     }, formatter.options);
     const infoLog = JSON.parse(log[MESSAGE]);
     expect(infoLog.level).toEqual('info');
-    expect(infoLog.message).toEqual({
+    expect(infoLog.request).toEqual({
       password: '********',
       user: {
         password: '****',
