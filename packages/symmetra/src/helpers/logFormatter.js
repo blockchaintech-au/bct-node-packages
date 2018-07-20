@@ -1,5 +1,14 @@
+// TODO refactoring this file
 const redundantHeaders = ['common', 'delete', 'get', 'head', 'post', 'put', 'patch'];
-function requestLogFormatter(req) {
+
+function removeParams(obj) {
+  delete obj.params;
+  delete obj.data;
+  delete obj.headers;
+  return obj;
+}
+
+function requestLogFormatter(req, logParams) {
   const {
     baseURL,
     url,
@@ -13,37 +22,37 @@ function requestLogFormatter(req) {
       headers[key] = req.headers[key];
     }
   });
-  return {
-    request: {
-      baseURL,
-      url,
-      method,
-      headers,
-      params,
-      data,
-    },
+  const requestDetails = {
+    baseURL,
+    url,
+    method,
+    headers,
+    params,
+    data,
   };
+  if (!logParams) removeParams(requestDetails);
+  return { request: requestDetails };
 }
 
-function responseLogFormatter(res) {
-  const { status, data } = res;
-  return {
-    response: {
-      status,
-      data,
-    },
-  };
+function responseLogFormatter(res, logParams) {
+  const {
+    status,
+    data,
+  } = res;
+  const responseDetails = { status, data };
+  if (!logParams) removeParams(responseDetails);
+  return { response: responseDetails };
 }
 
-function errorLogFormatter(error) {
+function errorLogFormatter(error, logParams) {
   const { status, data } = error.response;
-  return {
-    error: {
-      message: error.message,
-      status,
-      data,
-    },
+  const errorDetails = {
+    message: error.message,
+    status,
+    data,
   };
+  if (!logParams) removeParams(errorDetails);
+  return { error: errorDetails };
 }
 
 export {

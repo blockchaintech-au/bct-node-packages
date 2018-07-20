@@ -7,21 +7,21 @@ import {
 import HttpError from './httpError';
 
 function requestInterceptor(req) {
-  tracer.info('Sent HTTP Request:', requestLogFormatter(req));
+  tracer.info('Sent HTTP Request:', requestLogFormatter(req, req.logParams));
   return req;
 }
 
 function responseInterceptor(res) {
-  tracer.info('Receive HTTP Response:', responseLogFormatter(res));
+  tracer.info('Receive HTTP Response:', responseLogFormatter(res, res.config.logParams));
   if (res.config.full) return res;
   return res.data;
 }
 
 function errorInterceptor(err) {
   if (err.response && err.response.status !== 500) {
-    tracer.warning('Receive HTTP Error Response:', errorLogFormatter(err));
+    tracer.warning('Receive HTTP Error Response:', errorLogFormatter(err, err.response.config.logParams));
   } else {
-    tracer.error('Receive HTTP Error Response:', errorLogFormatter(err));
+    tracer.error('Receive HTTP Error Response:', errorLogFormatter(err, err.response.config.logParams));
   }
   return Promise.reject(new HttpError(err));
 }

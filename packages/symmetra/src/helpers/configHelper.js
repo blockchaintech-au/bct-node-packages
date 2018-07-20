@@ -6,12 +6,13 @@ const defaultConfig = {
   },
   responseType: 'json',
   timeout: 20000,
+  logParams: true,
 };
 
 function mergeConfig(config1, config2) {
   config2 = config2 || {};
   const config = {};
-  ['url', 'method', 'params', 'data', 'baseURL', 'responseType'].forEach((prop) => {
+  ['url', 'method', 'params', 'data', 'baseURL', 'responseType', 'logParams'].forEach((prop) => {
     if (typeof config2[prop] !== 'undefined') {
       config[prop] = config2[prop];
     } else if (typeof config1[prop] !== 'undefined') {

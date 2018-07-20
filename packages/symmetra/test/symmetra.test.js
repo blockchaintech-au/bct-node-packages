@@ -46,4 +46,13 @@ describe('Test symmetra http client', () => {
     expect(res.status).toEqual(200);
     expect(res.data.id).toEqual(1);
   });
+
+  test('hide params log', async () => {
+    const res = await symm.get(`${BASE_URL}users/1`, {
+      full: true,
+      logParams: false,
+    });
+    expect(res.status).toEqual(200);
+    expect(res.data.id).toEqual(1);
+  });
 });
