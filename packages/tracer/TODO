@@ -1,0 +1,6 @@
+
+Tracer todo list:
+  ☐ Asyncchronize log
+  ☐ Extract mask configuration @high @started(18-07-20 16:45)
+  ☐ Write log to file
+  ☐ Executable js to read log to console
