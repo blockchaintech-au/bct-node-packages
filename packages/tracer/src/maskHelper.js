@@ -26,7 +26,7 @@ class MaskHelper {
         if (isArrayOrObject(value)) {
           this.maskObj(value);
         } else {
-          obj[key] = this.maskItem(key, value);
+          obj[key] = this.maskItem(key, value); // eslint-disable-line
         }
       });
     }

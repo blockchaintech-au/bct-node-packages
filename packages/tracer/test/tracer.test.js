@@ -22,7 +22,14 @@ describe('Log format', () => {
       request: {
         password: 'password',
         user: {
+          email: 'csf-123@blockchaintech.net.au',
+          userEmail: 'csf-123@blockchaintech.net.au',
           password: 'pass',
+          currentPassword: 'pass',
+          newPassword: 'pass',
+          account_number: '123456',
+          token: '1234567890',
+          otp: '12345',
         },
         users: [{
           password: '1',
@@ -36,7 +43,14 @@ describe('Log format', () => {
     expect(infoLog.request).toEqual({
       password: '********',
       user: {
+        email: 'csf****@blockchaintech.net.au',
+        userEmail: 'csf****@blockchaintech.net.au',
         password: '****',
+        currentPassword: '****',
+        newPassword: '****',
+        account_number: '******',
+        token: '**********',
+        otp: '*****',
       },
       users: [{
         password: '*',
