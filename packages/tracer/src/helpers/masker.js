@@ -2,15 +2,18 @@ function isArrayOrObject(obj) {
   return Array.isArray(obj) || (typeof obj === 'object');
 }
 
-class MaskHelper {
-  constructor(filter) {
-    this.filter = filter;
+class Masker {
+  constructor(strategy) {
+    this.strategy = strategy;
   }
 
   mask(object) {
-    const cloneObj = JSON.parse(JSON.stringify(object));
-    this.maskObj(cloneObj);
-    return cloneObj;
+    if (object) {
+      const cloneObj = JSON.parse(JSON.stringify(object));
+      this.maskObj(cloneObj);
+      return cloneObj;
+    }
+    return {};
   }
 
   maskObj(obj) {
@@ -33,11 +36,11 @@ class MaskHelper {
   }
 
   maskItem(key, value) {
-    if (Object.prototype.hasOwnProperty.call(this.filter, key)) {
-      return String(value).replace(this.filter[key], x => '*'.repeat(x.length));
+    if (Object.prototype.hasOwnProperty.call(this.strategy, key)) {
+      return String(value).replace(this.strategy[key], x => '*'.repeat(x.length));
     }
     return value;
   }
 }
 
-export default MaskHelper;
+export default Masker;
