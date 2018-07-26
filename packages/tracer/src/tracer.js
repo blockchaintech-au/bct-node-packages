@@ -1,23 +1,38 @@
 import winston from 'winston';
-import format from './format';
-import SlackTransport from './slackTransport';
+import logger from '../src/helpers/logger';
+import Masker from '../src/helpers/masker';
+import Formatter from '../src/helpers/formatter';
 
-const { NODE_ENV, LOGGER_LEVEL } = process.env;
+class Tracer {
+  constructor() {
+    this.strategy = 'default';
+  }
+}
 
-const tracer = winston.createLogger({
-  levels: winston.config.syslog.levels,
-  exitOnError: false,
-  transports: [
-    new winston.transports.Console({
-      silent: NODE_ENV === 'test',
-      level: LOGGER_LEVEL || 'debug',
-    }),
-    new SlackTransport({
-      silent: NODE_ENV === 'test',
-      level: 'error',
-    }),
-  ],
-  format: format(),
+Object.defineProperty(Tracer.prototype, 'strategy', {
+  get() {
+    return this.maskStrategy;
+  },
+  set(strategy) {
+    try {
+      if (typeof strategy === 'string') {
+        this.maskStrategy = require(`./mask/${strategy}Strategy`).default; // eslint-disable-line
+      } else {
+        this.maskStrategy = strategy;
+      }
+      const masker = new Masker(this.maskStrategy);
+      this.formatter = new Formatter(masker);
+    } catch (err) {
+      logger.error('Strategy invalid or not found');
+    }
+  },
 });
 
-export default tracer;
+Object.keys(winston.config.syslog.levels).forEach((level) => {
+  Tracer.prototype[level] = function log(message, obj) {
+    const logStr = this.formatter.format(message, obj);
+    logger[level](logStr);
+  };
+});
+
+export default new Tracer();
