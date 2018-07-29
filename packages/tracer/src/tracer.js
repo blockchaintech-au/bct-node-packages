@@ -30,8 +30,8 @@ Object.defineProperty(Tracer.prototype, 'strategy', {
 
 Object.keys(winston.config.syslog.levels).forEach((level) => {
   Tracer.prototype[level] = function log(message, obj) {
-    const logStr = this.formatter.format(message, obj);
-    logger[level](logStr);
+    const logObj = this.formatter.format(message, obj);
+    logger[level](logObj);
   };
 });
 
