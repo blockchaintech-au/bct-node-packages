@@ -33,11 +33,33 @@ The log should be
 {"level":"info","datetime":"2018-06-17T03:12:52.518Z","project":"csf","application":"tracer","environment":"production","message":"info message","info":"some information"}
 ```
 
-## Slack Integration
+## Mask sensitive information
 
-Set Slack API token and conversation id in the environment variable
+Tracer can mask sensentive infomation to avoid customer information leak by logs. The rules is defined by Regex
 
-```sh
-export SLACK_TOKEN=XXXXXXX
-export CONVERSATION_ID=XXXXXX
+### Default Rules
+
+```js
+{
+  password: /.*/,
+  currentPassword: /.*/,
+  newPassword: /.*/,
+  account_number: /.*/,
+  token: /.*/,
+  otp: /.*/,
+  email: /.{1,4}?(?=@)/,
+  userEmail: /.{1,4}?(?=@)/,
+};
+
+```
+
+### How to customize rules
+
+Set your own rules when initialize your app
+
+```js
+tracer.strategy = {
+  password: /.*/,
+  bank_info: /.*/,
+}
 ```
