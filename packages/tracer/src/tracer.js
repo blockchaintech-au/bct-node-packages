@@ -1,7 +1,7 @@
 import winston from 'winston';
-import logger from '../src/helpers/logger';
-import Masker from '../src/helpers/masker';
-import Formatter from '../src/helpers/formatter';
+import logger from './helpers/logger';
+import Masker from './helpers/masker';
+import Formatter from './helpers/formatter';
 
 class Tracer {
   constructor() {
