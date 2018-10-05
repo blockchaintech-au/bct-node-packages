@@ -20,8 +20,10 @@ function responseInterceptor(res) {
 function errorInterceptor(err) {
   if (err.response && err.response.status !== 500) {
     tracer.warning('Receive HTTP Error Response:', errorLogFormatter(err, err.response.config.logParams));
-  } else {
+  } else if (err.response) {
     tracer.error('Receive HTTP Error Response:', errorLogFormatter(err, err.response.config.logParams));
+  } else {
+    tracer.error('Receive HTTP Error Response:', err.message);
   }
   return Promise.reject(new HttpError(err));
 }
