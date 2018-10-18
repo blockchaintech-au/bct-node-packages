@@ -9,4 +9,5 @@ export default {
   email: /.{1,4}?(?=@)/,
   emailAddress: /.{1,4}?(?=@)/,
   userEmail: /.{1,4}?(?=@)/,
+  address: /.{1,4}?(?=@)/,
 };
